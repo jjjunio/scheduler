@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Empty(props) {
+  console.log("This is the empty ", props);
     
   return(
     <main className="appointment__add">
