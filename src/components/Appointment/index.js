@@ -6,6 +6,7 @@ import Empty from "./Empty"
 import "./styles.scss";
 
 export default function Appointment(props) {
+  console.log("This is the Appointment function: ", props.interview)
   return(
       <Fragment>
       <Header time={props.time} />
