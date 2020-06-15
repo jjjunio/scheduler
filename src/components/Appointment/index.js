@@ -19,8 +19,6 @@ const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
-
-
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY 
@@ -34,29 +32,25 @@ export default function Appointment(props) {
 
     transition(SAVING);
 
-    props.bookInterview(props.id, interview, transition(SHOW))
+    // props.bookInterview(props.id, interview, transition(SHOW))
     // transition(SHOW);
-      // .then(() => {transition(SHOW)})
-      // .catch(error => {transition(ERROR_SAVE, true)});
+    props
+      .bookInterview(props.id, interview)
+      .then(() => {transition(SHOW)})
+      .catch(error => {transition(ERROR_SAVE, true)});
 
   }
 
   function deleteInterview(event) {
 
     transition(DELETING, true)
-    props.cancelInterview(props.id, transition(EMPTY))
+    // props.cancelInterview(props.id, transition(EMPTY))
     // transition(EMPTY);
-    // .then(() => {transition(EMPTY)})
-    // .catch(error => {transition(ERROR_DELETE, true)});
+    props
+    .cancelInterview(props.id)
+    .then(() => {transition(EMPTY)})
+    .catch(error => {transition(ERROR_DELETE, true)});
   }
-
-  // function confirmDelete() {
-  //   transition(CONFIRM)
-  // }
-
-  // function editInterview() {
-  //   transition(EDIT)
-  // }
 
   return(
       <Fragment>
