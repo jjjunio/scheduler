@@ -10,12 +10,7 @@ export default function useVisualMode(initial) {
     }
     setMode(newMode)
   }
-
-  // Add the code to implement the back action.
-  // Every time we add a mode to our history it goes to the top of the stack, 
-  // this means to transition back to the previous mode, all we need to do is remove the last item from the stack, 
-  // and then setMode with the last item in the array.
-
+  
   function back() {
       if (history.length > 1) {
         const historyStack = history.slice(0, history.length-1);
