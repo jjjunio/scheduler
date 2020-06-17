@@ -1,5 +1,7 @@
 # Interview Scheduler
 
+Interview Scheduler is a single page application scheduler project for Lighthouse Lab students built by using React. It communicates with an API server over HTTP thru axios, using the JSON format. The app components were built using Storybook and tested using Jest and Cypress. 
+
 ## Setup
 
 Install dependencies with `npm install`.
