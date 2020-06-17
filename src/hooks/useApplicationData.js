@@ -10,14 +10,6 @@ export default function useApplicationData(props) {
     spots: 5
   })
 
-  // Where is the value of "spots" stored for each day? (state.days)
-  // When should that value change? 
-  // How can we calculate how many spots should be available?
-
-  // TIPS 
-  // The appointment id is known when an interview is confirmed or canceled by the server. (state.appointments.id)
-  // Changes should be limited to the useApplicationData.js file.
-
   const setDay = day => setState({ ...state, day });
 
   useEffect(() => {
@@ -35,7 +27,6 @@ export default function useApplicationData(props) {
     for (let day in state.days) {
       if (state.days[day].name === state.day) {
         for (let id of state.days[day].appointments) {
-          // console.log("HELLO, THIS IS SETSPOTS", state.appointments[id].interview)
           if (!state.appointments[id].interview) {
             spotsOpen++;
           }
@@ -72,9 +63,9 @@ export default function useApplicationData(props) {
       .then(() => {
         setState({ ...updatedState, days: updatedDays });
       })
-      .catch((error) => {
-        console.error("appointment PUT request failed: ", error)
-      });  
+      // .catch((error) => {
+      //   console.error("appointment PUT request failed: ", error)
+      // });  
   };
 
   function cancelInterview(id) {
@@ -93,14 +84,12 @@ export default function useApplicationData(props) {
     
     const updatedState = { ...state, appointments };
     const updatedDays = setSpots(updatedState);
+    
 
     return axios.delete(`/api/appointments/${id}`, appointment)
       .then(() => {
         setState({...updatedState, days: updatedDays})
       })    
-      .catch((error) => {
-        console.error("appointment DELETE request failed: ", error)
-      });  
   };
 
   return { state, setDay, bookInterview, cancelInterview, setSpots };

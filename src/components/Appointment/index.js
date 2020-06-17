@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
@@ -49,11 +49,11 @@ export default function Appointment(props) {
     props
     .cancelInterview(props.id)
     .then(() => {transition(EMPTY)})
-    .catch(error => {transition(ERROR_DELETE, true)});
+    .catch(error => transition(ERROR_DELETE, true));
   }
 
   return(
-      <Fragment>
+      <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && props.interview && (
@@ -104,6 +104,6 @@ export default function Appointment(props) {
       {mode === ERROR_SAVE && (
         <Error message="Error Saving Appointment" onClose={() => back()} />
       )}
-      </Fragment>
+      </article>
   )
 };
